@@ -1,8 +1,8 @@
 <template>
-  <BaseThree></BaseThree>
+  <Rice></Rice>
 </template>
 
 <script setup>
-import BaseThree from './components/BaseThree/BaseThree.vue'
+import Rice from './views/rice/index.vue'
 </script>
 <style scoped></style>
