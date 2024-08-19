@@ -1,12 +1,16 @@
 import * as THREE from 'three'
-import { GLTFLoader } from 'three/examples/jsm/Addons.js'
+import { ambient, directionalLight } from './light'
+import { model } from './model'
+const axesHelper = new THREE.AxesHelper(100)
 
-const model = new THREE.Group()
+const scene = new THREE.Scene()
 
-const loader = new GLTFLoader()
+directionalLight.target = model
 
-loader.load('/public/rice/model.gltf', (obj) => {
-	console.log(obj)
-})
+scene.add(ambient)
+scene.add(directionalLight)
+scene.add(model)
 
-export { model }
+scene.add(axesHelper)
+
+export { scene, ambient, directionalLight, model }

@@ -1,5 +1,5 @@
-import { useElementSize } from '@vueuse/core/index.cjs'
-import { toRef, watch, watchEffect } from 'vue'
+import { useElementSize, watchDebounced } from '@vueuse/core/index.cjs'
+import { computed, toRef, watchEffect } from 'vue'
 
 export const useThree = (root, { renderer, camera, scene, onLoop }) => {
 	root = toRef(root)
@@ -9,9 +9,10 @@ export const useThree = (root, { renderer, camera, scene, onLoop }) => {
 			root.value.appendChild(renderer.domElement)
 		}
 	})
-
+	const aspect = computed(() => width.value / height.value)
 	const update = () => {
 		renderer.setSize(width.value, height.value)
+
 		camera.aspect = aspect.value
 		camera.updateProjectionMatrix()
 	}
@@ -19,7 +20,6 @@ export const useThree = (root, { renderer, camera, scene, onLoop }) => {
 	const loop = () => {
 		onLoop?.()
 		renderer.render(scene, camera)
-		stats.update()
 		requestAnimationFrame(loop)
 	}
 	loop()
