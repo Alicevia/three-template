@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 
-const ambient = new THREE.AmbientLight(0xffffff, 0.4)
+const ambient = new THREE.AmbientLight(0xffffff, 0.6)
 
 const directionalLight = new THREE.Group()
 const dl1 = new THREE.DirectionalLight(0xffffff, 1)
