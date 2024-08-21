@@ -2,9 +2,9 @@ import { CSS2DObject } from 'three/examples/jsm/Addons.js'
 import { Tag } from '@arco-design/web-vue'
 
 import { createApp, h } from 'vue'
+import { createCSS2DObject } from '../../../utils'
 export const createTag = (name) => {
-	const tagContainer = document.createElement('div')
-	tagContainer.style.pointerEvents = 'none'
+	const { container, css2Obj } = createCSS2DObject()
 	const app = createApp(
 		h(
 			Tag,
@@ -12,8 +12,6 @@ export const createTag = (name) => {
 			() => name
 		)
 	)
-	app.mount(tagContainer)
-
-	const label = new CSS2DObject(tagContainer)
-	return label
+	app.mount(container)
+	return css2Obj
 }

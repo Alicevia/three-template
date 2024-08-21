@@ -15,7 +15,6 @@ export const useRayChoose = (root, data, camera) => {
 		pointer.y = -(elementY.value / elementHeight.value) * 2 + 1
 		ray.setFromCamera(pointer, camera)
 		const intersects = ray.intersectObjects(data.value)
-		console.log(intersects)
 		if (intersects.length > 0) {
 			current.value = intersects.at(0)
 		} else {
@@ -23,5 +22,5 @@ export const useRayChoose = (root, data, camera) => {
 		}
 	})
 
-	return { pointer, current }
+	return current
 }

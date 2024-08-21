@@ -1,5 +1,8 @@
 <template>
-  <Rice></Rice>
+  <div>
+    <Rice></Rice>
+
+  </div>
 </template>
 
 <script setup>

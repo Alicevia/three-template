@@ -11,7 +11,7 @@ const { loop, scene, camera, renderer, } = useRiceThree(root)
 
 const { stats } = useStats(root)
 const { controls } = useOrbitControls(renderer, scene, camera)
-const { gui } = useGui({ root, camera, controls })
+const { gui } = useGui(root, { camera, controls })
 
 
 onMounted(loop)

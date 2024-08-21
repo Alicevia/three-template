@@ -7,7 +7,7 @@ import { useRayChoose } from '../../../composable/threejs/useRayChoose'
 import { granary } from './model'
 export const useRiceThree = (root) => {
 	root = toRef(root)
-	const { current } = useRayChoose(root, granary, camera)
+	const currentTag = useRayChoose(root, granary, camera)
 	const { width, height } = useElementSize(root)
 
 	const aspect = computed(() => width.value / height.value)

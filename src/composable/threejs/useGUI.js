@@ -1,7 +1,7 @@
 import GUI from 'three/examples/jsm/libs/lil-gui.module.min.js'
 import { onMounted } from 'vue'
 
-export const useGui = ({ camera, controls, root } = {}) => {
+export const useGui = (root, { camera, controls } = {}) => {
 	const gui = new GUI()
 
 	if (camera) {
