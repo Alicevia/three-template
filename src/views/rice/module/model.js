@@ -1,17 +1,11 @@
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/Addons.js'
-import { Tag } from '@arco-design/web-vue'
+import { createTag } from './tag'
+import { shallowRef } from 'vue'
 
-import { createApp } from 'vue'
 const model = new THREE.Group()
 const loader = new GLTFLoader()
-
-const app = createApp(Tag, {}, 'OK')
-const div = document.createElement('div')
-app.mount(div)
-document.body.appendChild(div)
-console.log(div)
-
+const granary = []
 loader.load('/rice/model.gltf', (gltf) => {
 	gltf.scene.traverse((obj) => {
 		if (obj.type == 'Mesh') {
@@ -21,9 +15,24 @@ loader.load('/rice/model.gltf', (gltf) => {
 			})
 		}
 	})
+	const group = gltf.scene.getObjectByName('粮仓')
+	group.traverse((item) => {
+		if (item.type == 'Mesh') {
+			granary.push(item)
+			const label = createTag(item.name)
+			const pos = item.getWorldPosition(new THREE.Vector3())
+			if (item.parent.name == '立筒仓') {
+				pos.y += 36
+			} else if (item.parent.name == '浅圆仓') {
+				pos.y += 20
+			} else if (item.parent.name == '平房仓') {
+				pos.y += 17
+			}
+			label.position.copy(pos)
+			model.add(label)
+		}
+	})
 	// gltf.outputColorSpace = THREE.SRGBColorSpace
 	model.add(gltf.scene)
-	console.log(gltf)
 })
-
-export { model }
+export { model, granary }

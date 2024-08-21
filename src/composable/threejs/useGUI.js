@@ -1,6 +1,7 @@
 import GUI from 'three/examples/jsm/libs/lil-gui.module.min.js'
+import { onMounted } from 'vue'
 
-export const useGui = ({ camera, controls } = {}) => {
+export const useGui = ({ camera, controls, root } = {}) => {
 	const gui = new GUI()
 
 	if (camera) {
@@ -19,5 +20,10 @@ export const useGui = ({ camera, controls } = {}) => {
 			})
 		})
 	}
+	onMounted(() => {
+		gui.domElement.style.position = 'absolute'
+		gui.domElement.style.right = 0
+		root.value.appendChild(gui.domElement)
+	})
 	return { gui }
 }

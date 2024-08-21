@@ -6,6 +6,7 @@ export const useStats = (root) => {
 
 	watch(root, (v) => {
 		if (v) {
+			stats.domElement.style.position = 'absolute'
 			v.appendChild(stats.domElement)
 		}
 	})

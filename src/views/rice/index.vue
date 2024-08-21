@@ -3,23 +3,19 @@
 </template>
 
 <script setup>
-import { ref, } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useStats, useOrbitControls, useGui, useThree } from '../../composable'
-import { scene, renderer, camera, css2DRenderer } from './module'
+import { useRiceThree } from './module'
 const root = ref()
+const { loop, scene, camera, renderer, } = useRiceThree(root)
+
 const { stats } = useStats(root)
 const { controls } = useOrbitControls(renderer, scene, camera)
-const { gui } = useGui({ camera, controls })
+const { gui } = useGui({ root, camera, controls })
 
-useThree(root, {
-  scene,
-  renderer,
-  css2DRenderer,
-  camera,
-  onLoop () {
-    stats.update()
-  }
-})
+
+onMounted(loop)
+
 
 
 
@@ -28,7 +24,9 @@ useThree(root, {
 </script>
 <style scoped>
 .three-container {
+  position: relative;
   height: 100%;
   width: 100%;
+
 }
 </style>

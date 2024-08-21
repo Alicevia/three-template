@@ -8,10 +8,10 @@ renderer.setPixelRatio(window.devicePixelRatio) //防止输出模糊
 renderer.outputColorSpace = THREE.SRGBColorSpace
 renderer.setClearColor(0x005577, 1)
 
-const css2DRenderer = new CSS2DRenderer()
-css2DRenderer.domElement.style.position = 'absolute'
-css2DRenderer.domElement.style.top = '0px'
-css2DRenderer.domElement.style.left = '0px'
-css2DRenderer.domElement.style.pointerEvents = 'none'
+const labelRenderer = new CSS2DRenderer()
+labelRenderer.domElement.style.position = 'absolute'
+labelRenderer.domElement.style.top = '0px'
+labelRenderer.domElement.style.left = '0px'
+labelRenderer.domElement.style.pointerEvents = 'none'
 
-export { renderer, css2DRenderer }
+export { renderer, labelRenderer }
