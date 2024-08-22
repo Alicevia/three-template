@@ -1,5 +1,4 @@
-import { Card } from '@arco-design/web-vue'
-import { createApp, h } from 'vue'
+import { createApp } from 'vue'
 import { createCSS2DObject } from '../../../utils'
 
 export const createCard = () => {

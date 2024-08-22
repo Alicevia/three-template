@@ -1,7 +1,6 @@
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/Addons.js'
-import { createTag } from './tag'
-import { shallowRef } from 'vue'
+import { createTag } from './tag.jsx'
 
 const model = new THREE.Group()
 const loader = new GLTFLoader()

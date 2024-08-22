@@ -5,6 +5,7 @@ import { camera } from './camera'
 import { renderer, labelRenderer } from './renderer'
 import { useRayChoose } from '../../../composable/threejs/useRayChoose'
 import { granary } from './model'
+
 export const useRiceThree = (root) => {
 	root = toRef(root)
 	const currentTag = useRayChoose(root, granary, camera)
