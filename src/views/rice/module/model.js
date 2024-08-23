@@ -5,6 +5,15 @@ import { createTag } from './tag.jsx'
 const model = new THREE.Group()
 const loader = new GLTFLoader()
 const granary = []
+
+// const loadModel = async () => {
+// 	return await new Promise((resolve) => {
+// 		loader.load('/rice/model.gltf', (gltf) => {
+// 			resolve(gltf)
+// 		})
+// 	})
+// }
+
 loader.load('/rice/model.gltf', (gltf) => {
 	gltf.scene.traverse((obj) => {
 		if (obj.type == 'Mesh') {
@@ -34,4 +43,5 @@ loader.load('/rice/model.gltf', (gltf) => {
 	// gltf.outputColorSpace = THREE.SRGBColorSpace
 	model.add(gltf.scene)
 })
+
 export { model, granary }

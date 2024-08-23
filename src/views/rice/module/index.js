@@ -1,14 +1,13 @@
-import { toRef, watchEffect, computed } from 'vue'
+import { toRef, onMounted, computed } from 'vue'
 import { useElementSize, watchDebounced } from '@vueuse/core'
 import { scene } from './scene'
 import { camera } from './camera'
 import { renderer, labelRenderer } from './renderer'
 import { useRayChoose } from '../../../composable/threejs/useRayChoose'
-import { granary } from './model'
+export { granary } from './model'
 
 export const useRiceThree = (root) => {
 	root = toRef(root)
-	const currentTag = useRayChoose(root, granary, camera)
 	const { width, height } = useElementSize(root)
 
 	const aspect = computed(() => width.value / height.value)
@@ -25,11 +24,9 @@ export const useRiceThree = (root) => {
 		requestAnimationFrame(loop)
 	}
 
-	watchEffect(() => {
-		if (root.value) {
-			root.value.appendChild(renderer.domElement)
-			root.value.appendChild(labelRenderer.domElement)
-		}
+	onMounted(() => {
+		root.value.appendChild(renderer.domElement)
+		root.value.appendChild(labelRenderer.domElement)
 	})
 	return { loop, scene, camera, renderer, labelRenderer }
 }
