@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { useMouseInElement, useEventListener } from '@vueuse/core'
-import { toRef, ref } from 'vue'
+import { toRef, ref, shallowRef } from 'vue'
 export const useRayChoose = (root, data, camera) => {
 	data = toRef(data)
 	root = toRef(root)
@@ -8,7 +8,7 @@ export const useRayChoose = (root, data, camera) => {
 		useMouseInElement(root)
 	const ray = new THREE.Raycaster()
 	const pointer = new THREE.Vector2()
-	const current = ref()
+	const current = shallowRef()
 
 	useEventListener(root, 'click', (e) => {
 		pointer.x = (elementX.value / elementWidth.value) * 2 - 1
@@ -17,6 +17,7 @@ export const useRayChoose = (root, data, camera) => {
 		const intersects = ray.intersectObjects(data.value)
 		if (intersects.length > 0) {
 			current.value = intersects.at(0)
+			console.log(intersects)
 		} else {
 			current.value = undefined
 		}

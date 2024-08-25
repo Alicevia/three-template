@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/Addons.js'
 import { createTag } from './tag.jsx'
-
+import modelData from '/public/rice/messageData.js'
 const model = new THREE.Group()
 const loader = new GLTFLoader()
 const granary = []
@@ -44,4 +44,18 @@ loader.load('/rice/model.gltf', (gltf) => {
 	model.add(gltf.scene)
 })
 
-export { model, granary }
+export const getMeshTopVector3 = (item) => {
+	const pos = item.getWorldPosition(new THREE.Vector3())
+	if (item.parent.name == '立筒仓') {
+		pos.y += 36
+	} else if (item.parent.name == '浅圆仓') {
+		pos.y += 20
+	} else if (item.parent.name == '平房仓') {
+		console.log(item)
+
+		pos.y += 17
+	}
+	return pos
+}
+
+export { model, granary, modelData }

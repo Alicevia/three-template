@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { ambient, directionalLight } from './light'
-import { model } from './model'
+import { model, getMeshTopVector3 } from './model'
 const axesHelper = new THREE.AxesHelper(100)
 
 const scene = new THREE.Scene()
@@ -13,4 +13,4 @@ scene.add(model)
 
 scene.add(axesHelper)
 
-export { scene, ambient, directionalLight, model }
+export { scene, ambient, directionalLight, model, getMeshTopVector3 }

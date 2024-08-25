@@ -4,8 +4,9 @@ import { scene } from './scene'
 import { camera } from './camera'
 import { renderer, labelRenderer } from './renderer'
 import { useRayChoose } from '../../../composable/threejs/useRayChoose'
-export { granary } from './model'
-
+export { granary, modelData } from './model'
+export * from './flame'
+export { getMeshTopVector3 } from './scene'
 export const useRiceThree = (root) => {
 	root = toRef(root)
 	const { width, height } = useElementSize(root)

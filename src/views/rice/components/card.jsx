@@ -1,17 +1,28 @@
-import { createApp } from 'vue'
+import { createApp, toRef } from 'vue'
 import { createCSS2DObject } from '../../../utils'
-
-export const createCard = () => {
+import { toReactive } from '@vueuse/core'
+export const createCard = (a) => {
 	const { container, css2Obj } = createCSS2DObject()
-
-	const app = createApp(
-		<a-card title='arco'>
-			ByteDance's core product, Toutiao ("Headlines"), is a content platform in
-			China and around the world. Toutiao started out as a news recommendation
-			engine and gradually evolved into a platform delivering content in various
-			formats.
-		</a-card>
-	)
+	const data = toRef(a)
+	const app = createApp(() => {
+		if (!data.value) return '暂无数据'
+		const { grain, grainHeight, weight, granaryName, temperature } = data.value
+		return (
+			<a-card title={granaryName} class='w-[200px]' extra={temperature}>
+				<div>
+					<a-space size={30} align='center'>
+						<a-avatar>S</a-avatar>
+						<a-statistic
+							animation
+							title={grain}
+							value={weight}
+							show-group-separator
+						/>
+					</a-space>
+				</div>
+			</a-card>
+		)
+	})
 	app.mount(container)
 
 	return css2Obj
