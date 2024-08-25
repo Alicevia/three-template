@@ -13,7 +13,8 @@
     "@arco-design/web-vue": "^2.56.0",
     "@vueuse/core": "^10.11.1",
     "three": "^0.167.1",
-    "vue": "^3.4.38"
+    "vue": "^3.4.38",
+    "vue-router": "^4.4.3"
   },
   "devDependencies": {
     "@arco-plugins/vite-vue": "^1.4.5",
