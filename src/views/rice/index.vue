@@ -1,15 +1,48 @@
 <template>
-  <div ref="root" class="three-container"></div>
+  <div ref="root" class="three-container">
+    <div class="absolute ">
+      <a-button>切换</a-button>
+    </div>
+  </div>
 </template>
 
 <script setup>
 import { ref, onMounted, watchEffect, shallowRef, computed, watch } from 'vue'
 import { useStats, useOrbitControls, useGui, useRayChoose } from '../../composable'
-
+import { useRiceThree, granary, modelData, createFlame, getMeshTopVector3 } from './module'
+import { createCard } from './components/card.jsx'
 
 
 const root = ref()
+const { loop, scene, camera, renderer, } = useRiceThree(root)
 
+// const { stats } = useStats(root)
+const { controls } = useOrbitControls(renderer, scene, camera)
+const { gui } = useGui(root, { camera, controls })
+
+const cardShallowRef = shallowRef()
+const current = useRayChoose(root, granary, camera)
+const currentData = computed(() => {
+  if (!current.value) return null
+  return modelData[current.value.object.name]
+})
+
+watchEffect(() => {
+  // 更新渲染
+  if (current.value) {
+    if (!cardShallowRef.value) {
+      cardShallowRef.value = createCard(currentData)
+      scene.add(cardShallowRef.value)
+    }
+    cardShallowRef.value.visible = true
+    cardShallowRef.value.position.copy(current.value.point)
+  } else {
+    if (cardShallowRef.value) {
+      cardShallowRef.value.visible = false
+    }
+
+  }
+})
 
 
 const useFire = () => {
@@ -49,7 +82,8 @@ const useFire = () => {
   }, 1000);
   return { getFireArr }
 }
-
+useFire()
+onMounted(loop)
 
 </script>
 <style scoped>
@@ -59,4 +93,4 @@ const useFire = () => {
   width: 100%;
 
 }
-</style>
+</style>../../composable/index.js./module/index.js

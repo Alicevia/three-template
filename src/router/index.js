@@ -1,16 +1,8 @@
-import { createWebHistory } from 'vue-router'
-import { createRouter } from 'vue-router'
+import { createWebHistory, createRouter } from 'vue-router'
+import { routes } from 'vue-router/auto-routes'
 
+console.log(routes)
 export const router = createRouter({
 	history: createWebHistory(),
-	routes: [
-		{
-			path: '/rice',
-			component: () => import('@/views/rice/rice.vue'),
-		},
-		{
-			path: '/phone',
-			component: () => import('@/views/phone/phone.vue'),
-		},
-	],
+	routes,
 })
