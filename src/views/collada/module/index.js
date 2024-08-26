@@ -22,7 +22,7 @@ setupModel().then((m) => {
 const { camera } = setupCamera()
 const { renderer, css2DRenderer } = setupRenderer()
 
-export const usePhone = (root) => {
+export const useCollada = (root) => {
 	root = toRef(root)
 	const { controls } = useOrbitControls(renderer, scene, camera)
 

@@ -5,5 +5,11 @@ export const useOrbitControls = (renderer, scene, camera) => {
 	controls.addEventListener('change', () => {
 		renderer.render(scene, camera)
 	})
+	// controls.minDistance
+	// controls.maxDistance
+	// controls.minPolarAngle
+	// controls.maxPolarAngle
+	// controls.minAzimuthAngle
+	// controls.maxAzimuthAngle
 	return { controls }
 }

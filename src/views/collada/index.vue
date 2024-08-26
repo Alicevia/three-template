@@ -5,11 +5,11 @@
 <script setup>
 import { ref, onMounted, watchEffect, shallowRef, toRef, watch } from 'vue'
 import { useStats, useOrbitControls, useGui, useRayChoose } from '../../composable'
-import { usePhone } from './module'
-
-
+import { useCollada } from './module'
 const root = ref()
-usePhone(root)
+useCollada(root)
+
+
 
 
 
